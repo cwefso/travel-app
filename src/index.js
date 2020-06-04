@@ -5,6 +5,43 @@
 import './css/base.scss';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+// import './images/turing-logo.png'
 
-console.log('This is the JavaScript entry file - your code begins here.');
+
+import data from './fetch';
+import User from './user';
+
+let travelersData
+let tripsData
+let destinationsData
+let user = new User(20)
+
+const login = document.querySelector('.submit-login');
+const nameBox = document.querySelector('.username');
+const passwordBox = document.querySelector('.password')
+
+login.addEventListener('click', (event) => {
+  event.preventDefault()
+  sayWhat()
+});
+
+async function getData() {
+  travelersData = await data.getTravelersData()
+  tripsData = await data.getTripsData()
+  destinationsData = await data.getDestinationsData()
+  onStartUp()
+}
+
+
+function onStartUp() {
+  console.log('Check')
+}
+
+function sayWhat() {
+  let userinput = nameBox.value
+  let passwordinput = passwordBox.value
+  user.login(userinput.toLowerCase(), passwordinput.toLowerCase())
+}
+
+window.onload = getData()
+

@@ -1,7 +1,74 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+html {
+  height: 100%;
+  max-height: 100%;
+  min-height: 100%;
+}
+
+ul {
+  text-align: left;
+}
 
 body {
-  background: $primary-background;
+  all: unset;
+  background-color: #c4cef4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  max-height: 100vh;
+  min-height: 100vh;
+  place-items: center
+}
+
+input {
+  width: 40%;
+  height: 5vh;
+  font-size: 3vh;
+  border-radius: 15px;
+}
+
+p {
+  background-color: #5c7ad4;
+  color: #fffeec;
+  border-radius: 15px;
+  padding: 2%;
+}
+
+h1 {
+  background-color: #fffae4;
+  color: #5c4a24;
+  border: 5px solid #fffeec;
+  height: 11%;
+  margin: 0;
+  text-align: center;
+  border-radius: 15px;
+}
+
+button {
+  background-color: #5c7ad4;;
+  color: #fffeec;
+  border-radius: 15px;
+  padding: 2%;
+  margin-top: 5%;
+  cursor: pointer;
+}
+
+.login-card {
+  all: unset;
+  background-color: #fffae4;;
+  border: 5px solid #fffeec;
+  border-radius: 15px;
+  color: #5c4a24;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 400px;
+}
+
+.hide {
+  display: none;
 }

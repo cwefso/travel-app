@@ -7,4 +7,4 @@ class Traveler extends User {
 
 }
 
-module.exports = Traveler
+export default Traveler

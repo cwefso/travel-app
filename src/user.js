@@ -1,16 +1,17 @@
 class User {
   constructor(id){
+    id !== undefined ? this.id = id : this.id = 1
     this.username = 'traveler' + id
     this.password = 'travel2020'
   }
   
   login(username, password) {
-    if((username === 'agency') && (password === this.password)) {
-      console.log("Agent Login")
-    } else if((username === this.username) && (password === this.password)) {
-      console.log('Traveler Login')
-    } else {
-      console.log('Invalid Login')
+    if((username.includes('agency')) && (password === this.password)) {
+      alert(`Welcome Agent`)
+    }
+    
+    if((username.includes('traveler')) && (password === this.password)) {
+      alert(`Welcome Traveler ${this.id}`)
     }
   }
 

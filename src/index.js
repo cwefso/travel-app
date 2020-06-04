@@ -10,11 +10,13 @@ import './css/base.scss';
 
 import data from './fetch';
 import User from './user';
+import Agent from './agent';
+import Traveler from './traveler';
 
 let travelersData
 let tripsData
 let destinationsData
-let user = new User(20)
+let loginData
 
 const login = document.querySelector('.submit-login');
 const nameBox = document.querySelector('.username');
@@ -22,7 +24,7 @@ const passwordBox = document.querySelector('.password')
 
 login.addEventListener('click', (event) => {
   event.preventDefault()
-  sayWhat()
+  makeProfile()
 });
 
 async function getData() {
@@ -32,15 +34,28 @@ async function getData() {
   onStartUp()
 }
 
-
 function onStartUp() {
-  console.log('Check')
+  console.log()
 }
 
-function sayWhat() {
+function makeProfile() {
   let userinput = nameBox.value
   let passwordinput = passwordBox.value
-  user.login(userinput.toLowerCase(), passwordinput.toLowerCase())
+  loginData = {username : userinput, password : passwordinput}
+  console.log(loginData)
+  if (loginData.username.toLowerCase().includes('agency') && loginData.password === 'travel2020') {
+    let agent = new Agent()
+    agent.login(userinput.toLowerCase(), passwordinput.toLowerCase())
+  } else if (loginData.username.toLowerCase().includes('traveler') && loginData.password === 'travel2020') {
+    var id = loginData.username.match(/(\d+)/);
+    id = parseInt(id[0])
+    console.log(typeof id)
+    console.log(id)
+    let traveler = new Traveler(id)
+    traveler.login(userinput.toLowerCase(), passwordinput.toLowerCase())
+  } else {
+    alert('Invalid Login')
+  }
 }
 
 window.onload = getData()

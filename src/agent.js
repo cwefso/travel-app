@@ -7,4 +7,4 @@ class Agent extends User {
   }
 }
 
-module.exports = Agent
+export default Agent

@@ -40,7 +40,7 @@ let data = {
         return res.json()
       })
       .then(data => {
-        return data.trips
+        return data
       })
       .catch(err => {
         alert(err.message)

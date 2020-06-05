@@ -41,12 +41,17 @@ class DomUpdates {
     id = parseInt(id[0])
     traveler = new Traveler(id)
     traveler.login(userinput.toLowerCase(), passwordinput.toLowerCase())
-    traveler.getData(traveler.id)
+    this.setData(id)
+  }
+  
+  async setData(id) {
+    await traveler.getData(id)
+    console.log(traveler)
     this.showTravelerPage(traveler.id)
   }
 
   showTravelerPage(id) {
-    cards.innerHTML = `${traveler}`;
+    cards.innerHTML = traveler.name;
   }
 
   showAgentPage() {

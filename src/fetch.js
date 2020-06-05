@@ -21,20 +21,6 @@ let data = {
       })
   },
 
-  getSpecificTravelersData(id) {
-    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/', id)
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        return data.traveler
-      })
-      .catch(err => {
-        alert(err.message)
-      })
-  },
-
-
   getTripsData() {
     return fetch(tripsUrl)
       .then(res => {

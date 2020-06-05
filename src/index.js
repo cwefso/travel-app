@@ -42,21 +42,25 @@ function makeProfile() {
   let userinput = nameBox.value
   let passwordinput = passwordBox.value
   loginData = {username : userinput, password : passwordinput}
-  console.log(loginData)
   if (loginData.username.toLowerCase().includes('agency') && loginData.password === 'travel2020') {
-    let agent = new Agent()
-    agent.login(userinput.toLowerCase(), passwordinput.toLowerCase())
+    makeAgency(userinput, passwordinput)
   } else if (loginData.username.toLowerCase().includes('traveler') && loginData.password === 'travel2020') {
-    var id = loginData.username.match(/(\d+)/);
-    id = parseInt(id[0])
-    console.log(typeof id)
-    console.log(id)
-    let traveler = new Traveler(id)
-    traveler.login(userinput.toLowerCase(), passwordinput.toLowerCase())
+    makeTraveler(userinput, passwordinput)
   } else {
     alert('Invalid Login')
   }
 }
 
-window.onload = getData()
+function makeAgency(userinput, passwordinput){
+    let agent = new Agent()
+    agent.login(userinput.toLowerCase(), passwordinput.toLowerCase())
+  }
 
+function makeTraveler(userinput, passwordinput) {
+  var id = loginData.username.match(/(\d+)/);
+  id = parseInt(id[0])
+  let traveler = new Traveler(id)
+  traveler.login(userinput.toLowerCase(), passwordinput.toLowerCase())   
+}
+
+window.onload = getData()

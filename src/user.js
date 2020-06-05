@@ -7,11 +7,11 @@ class User {
   
   login(username, password) {
     if((username.includes('agency')) && (password === this.password)) {
-      alert(`Welcome Agent`)
+      console.log('agent')
     }
     
     if((username.includes('traveler')) && (password === this.password)) {
-      alert(`Welcome Traveler ${this.id}`)
+      console.log(this.username)
     }
   }
 

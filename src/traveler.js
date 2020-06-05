@@ -1,15 +1,14 @@
 import data from './fetch';
 import User from './user';
 
-
 class Traveler extends User {
   constructor(id) {
     super(id);
   }
 
-  async getUserDatabyID(id) {
-    let data = await data.getSpecificTravelersData(id)
-    console.log(data)
+  async getData(id) {
+    this.travelersData = await data.getSpecificTravelerData(id)
+    console.log(this)
     return data
   }
 }

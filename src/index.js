@@ -6,61 +6,30 @@ import './css/base.scss';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
-
-
 import data from './fetch';
-import User from './user';
-import Agent from './agent';
-import Traveler from './traveler';
+import DomUpdates from './domUpdates'
 
 let travelersData
 let tripsData
 let destinationsData
-let loginData
+
+let domUpdates = new DomUpdates()
 
 const login = document.querySelector('.submit-login');
-const nameBox = document.querySelector('.username');
-const passwordBox = document.querySelector('.password')
+const cards = document.querySelector('.cards')
 
 login.addEventListener('click', (event) => {
   event.preventDefault()
-  makeProfile()
+  domUpdates.makeProfile()
 });
 
 async function getData() {
   travelersData = await data.getTravelersData()
   tripsData = await data.getTripsData()
   destinationsData = await data.getDestinationsData()
-  onStartUp()
+  resolveData()
 }
 
-function onStartUp() {
-  console.log()
-}
-
-function makeProfile() {
-  let userinput = nameBox.value
-  let passwordinput = passwordBox.value
-  loginData = {username : userinput, password : passwordinput}
-  if (loginData.username.toLowerCase().includes('agency') && loginData.password === 'travel2020') {
-    makeAgency(userinput, passwordinput)
-  } else if (loginData.username.toLowerCase().includes('traveler') && loginData.password === 'travel2020') {
-    makeTraveler(userinput, passwordinput)
-  } else {
-    alert('Invalid Login')
-  }
-}
-
-function makeAgency(userinput, passwordinput){
-    let agent = new Agent()
-    agent.login(userinput.toLowerCase(), passwordinput.toLowerCase())
-  }
-
-function makeTraveler(userinput, passwordinput) {
-  var id = loginData.username.match(/(\d+)/);
-  id = parseInt(id[0])
-  let traveler = new Traveler(id)
-  traveler.login(userinput.toLowerCase(), passwordinput.toLowerCase())   
-}
+const resolveData = () => {}
 
 window.onload = getData()

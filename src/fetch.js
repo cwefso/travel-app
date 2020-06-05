@@ -34,6 +34,18 @@ let data = {
       })
   },
 
+  getSpecificTravelerData(id) {
+    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/${id}`)
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        return data.trips
+      })
+      .catch(err => {
+        alert(err.message)
+      })
+  },
 
   getDestinationsData() {
     return fetch(destinationsUrl)

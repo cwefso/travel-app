@@ -21,6 +21,19 @@ let data = {
       })
   },
 
+  getSpecificTravelerData(id) {
+    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/${id}`)
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        return data
+      })
+      .catch(err => {
+        alert(err.message)
+      })
+  },
+
   getTripsData() {
     return fetch(tripsUrl)
       .then(res => {
@@ -34,8 +47,8 @@ let data = {
       })
   },
 
-  getSpecificTravelerData(id) {
-    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/${id}`)
+  getSpecificTravelerTrips(id) {
+    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips/${id}`)
       .then(res => {
         return res.json()
       })

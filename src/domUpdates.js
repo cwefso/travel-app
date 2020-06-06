@@ -9,7 +9,7 @@ let destinationsData
 let loginData
 let traveler, agent
 
-const cards = document.querySelector('.cards');
+
 const nameBox = document.querySelector('.username');
 const passwordBox = document.querySelector('.password')
 
@@ -24,34 +24,28 @@ class DomUpdates {
     if (loginData.username.toLowerCase().includes('agency') && loginData.password === 'travel2020') {
       this.makeAgency(userinput, passwordinput)
     } else if (loginData.username.toLowerCase().includes('traveler') && loginData.password === 'travel2020') {
-      this.makeTraveler(userinput, passwordinput)
+      this.makeTraveler()
     } else {
       alert('Invalid Login')
     }
   }
   
-  makeAgency(userinput, passwordinput){
+  makeAgency(){
     agent = new Agent()
-    agent.login(userinput.toLowerCase(), passwordinput.toLowerCase())
     this.showAgentPage()
   }
   
-  makeTraveler(userinput, passwordinput) {
+  makeTraveler() {
     var id = loginData.username.match(/(\d+)/);
     id = parseInt(id[0])
     traveler = new Traveler(id)
-    traveler.login(userinput.toLowerCase(), passwordinput.toLowerCase())
     this.setData(id)
   }
   
   async setData(id) {
     await traveler.getData(id)
-    console.log(traveler)
-    this.showTravelerPage(traveler.id)
-  }
-
-  showTravelerPage(id) {
-    cards.innerHTML = traveler.name;
+    await traveler.getTrips(id, tripsData)
+    traveler.showTravelerPage(traveler.id)
   }
 
   showAgentPage() {

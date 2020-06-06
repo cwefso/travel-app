@@ -8,7 +8,6 @@ class Agent extends User {
   constructor(id) {
     super(id);
     this.username = 'agency'
-    this.destinations = []
     this.trip = {}
     this.revenue = 0
     this.todaysTravelers = []
@@ -20,43 +19,8 @@ class Agent extends User {
     this.getDestinations()
     this.getDestinationsIDs()
     this.todaysTravel()
-    this.showAgentPage()
-  }
-
-  getDestinationsIDs() {
-    let locales =  this.trips.forEach(trip => {
-      let id = trip.destinationID
-      let thisTrip = trip
-      this.setDestinationNames(id, thisTrip)
-      this.setCost(id, thisTrip)
-    })
-    return locales
-  }
-
-  getDestinations() {
-    let entries = Object.entries(this.destinatationData)
-    return entries.forEach(entry => {
-      this.destinations.push(entry[1])
-    })
-  }
-
-  setDestinationNames(id, thisTrip) {
-    let setNames = this.destinations.forEach(destination => {
-      if (destination.id === id) {
-        thisTrip.locale = destination.destination
-      }
-    })
-    return setNames
-  }
-
-  setCost(id, thisTrip) {
-    let cost = this.destinations.forEach(destination => {
-      if (destination.id === id) {
-        thisTrip.cost = ((destination.estimatedLodgingCostPerDay + destination.estimatedFlightCostPerPerson) * thisTrip.travelers)
-      }
-    })
     this.totalRevenue()
-    return cost
+    this.showAgentPage()
   }
 
   totalRevenue() {

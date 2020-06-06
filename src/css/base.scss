@@ -9,7 +9,6 @@ ul {
 }
 
 body {
-  all: unset;
   background-color: #c4cef4;
   display: flex;
   flex-direction: column;
@@ -17,9 +16,7 @@ body {
   justify-content: space-around;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
-  max-height: 100vh;
-  min-height: 100vh;
-  place-items: center
+  place-items: center;
 }
 
 input {
@@ -55,6 +52,16 @@ button {
   cursor: pointer;
 }
 
+.cards {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
 .login-card {
   all: unset;
   background-color: #fffae4;;
@@ -67,6 +74,21 @@ button {
   justify-content: center;
   height: 400px;
   width: 400px;
+}
+
+.card {
+  all: unset;
+  background-color: #fffae4;;
+  border: 5px solid #fffeec;
+  border-radius: 15px;
+  color: #5c4a24;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: 40%;
+  margin: inherit;
 }
 
 .hide {

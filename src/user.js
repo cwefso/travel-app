@@ -1,17 +1,10 @@
 class User {
   constructor(id){
+    id !== undefined ? this.id = id : this.id = 1
     this.username = 'traveler' + id
     this.password = 'travel2020'
-  }
-  
-  login(username, password) {
-    if((username === 'agency') && (password === this.password)) {
-      console.log("Agent Login")
-    } else if((username === this.username) && (password === this.password)) {
-      console.log('Traveler Login')
-    } else {
-      console.log('Invalid Login')
-    }
+    this.today = new Date();
+    this.date = this.today.getFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate();
   }
 
 }

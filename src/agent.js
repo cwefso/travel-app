@@ -44,8 +44,16 @@ class Agent extends User {
     return allTravelersToday
   }
 
+  getPending() {
+    let pendingTrips = this.trips.filter(trip => trip.status === "pending")
+    this.pendingTrips = pendingTrips
+    console.log(pendingTrips)
+    return pendingTrips
+  }
+
   showAgentPage() {
     this.showRevenue()
+    this.getPending()
     this.showPending()
     let builtData = this.todaysTravelers.forEach(trip =>{
       loginCard.classList.add('hide')
@@ -74,7 +82,7 @@ class Agent extends User {
 
   showPending() {
     cards.insertAdjacentHTML('beforeend', 
-    `<section class="pending">Pending</section>`
+    `<section class="pending">Pending: ${this.pending}</section>`
     )
   }
 

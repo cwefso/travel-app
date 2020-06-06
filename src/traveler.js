@@ -46,6 +46,10 @@ class Traveler extends User {
 // Total amount I have spent on trips this year. This should be calculated from the trips data and include a travel agent’s 10% fee
   }
 
+  calcCost() {
+    
+  }
+
 
 
 }

@@ -1,8 +1,10 @@
 import data from './fetch';
 import User from './user';
 
-const cards = document.querySelector('.cards');
-const loginCard = document.querySelector('.login-card')
+const cardsArea = document.querySelector('.cards-area');
+const loginPage = document.querySelector('.login-page')
+const sidebar = document.querySelector('.sidebar')
+const mainHeader = document.querySelector('.main-header')
 
 class Traveler extends User {
   constructor(id) {
@@ -31,8 +33,11 @@ class Traveler extends User {
   showTravelerPage(id) {
     this.showTotalSpent()
     let builtData = this.trips.forEach(trip =>{
-      loginCard.classList.add('hide')
-      cards.insertAdjacentHTML('beforeend', 
+      loginPage.classList.add('hide')
+      sidebar.classList.remove('hide')
+      mainHeader.classList.remove('hide')
+      cardsArea.classList.remove('hide')
+      cardsArea.insertAdjacentHTML('beforeend', 
       `<section class="card">
         <p>UserID: ${trip.userID}</p>
         <p>Location: ${trip.locale}</p>
@@ -61,7 +66,7 @@ class Traveler extends User {
   }
 
   showTotalSpent() {
-    cards.insertAdjacentHTML('beforeend', 
+    sidebar.insertAdjacentHTML('beforeend', 
     `<section class="pending">
       <p>Total: ${this.total}</p>
     </section>`

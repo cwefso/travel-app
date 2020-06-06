@@ -1,7 +1,7 @@
 import User from './user';
 import data from './fetch';
 
-const cards = document.querySelector('.cards');
+const cardsArea = document.querySelector('.cards-area');
 const loginCard = document.querySelector('.login-card')
 
 class Agent extends User {
@@ -57,7 +57,7 @@ class Agent extends User {
     this.showPending()
     let builtData = this.todaysTravelers.forEach(trip =>{
       loginCard.classList.add('hide')
-      cards.insertAdjacentHTML('beforeend', 
+      cardsArea.insertAdjacentHTML('beforeend', 
       ` <section class="card">
         <p>UserID: ${trip.userID}</p>
         <p>Trip Data: ${trip.date}</p>
@@ -74,14 +74,14 @@ class Agent extends User {
   }
   
   showRevenue() {
-    cards.insertAdjacentHTML('beforeend', 
+    cardsArea.insertAdjacentHTML('beforeend', 
     `<section class="card">
     <p>Revenue: ${this.revenue}</p>
     </section>`)
   }
 
   showPending() {
-    cards.insertAdjacentHTML('beforeend', 
+    cardsArea.insertAdjacentHTML('beforeend', 
     `<section class="pending">Pending: ${this.pending}</section>`
     )
   }

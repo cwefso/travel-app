@@ -27,7 +27,6 @@ class Traveler extends User {
 
   showTravelerPage(id) {
     let builtData = this.trips.forEach(trip =>{
-      console.log(trip)
       loginCard.classList.add('hide')
       cards.insertAdjacentHTML('beforeend', 
       `<section class="card">
@@ -47,7 +46,7 @@ class Traveler extends User {
   }
 
   calcCost() {
-    
+
   }
 
 

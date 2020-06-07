@@ -8,7 +8,7 @@
 
 
 body {
-  background-color: #c4cef4;
+  background-color: $background;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -23,8 +23,8 @@ body {
 }
 
 button {
-  background-color: #5c7ad4;;
-  color: #fffeec;
+  background-color: $lighterblue;
+  color: $white;
   border-radius: 15px;
   padding: 2%;
   margin-top: 5%;
@@ -33,10 +33,11 @@ button {
 
 .login-card {
 all: unset;
-background-color: #fffae4;;
-border: 5px solid #fffeec;
+background-color: $cream;
+border: 5px solid $white;
 border-radius: 15px;
-color: #5c4a24;
+color: $lighterblue;
+font-weight: bold;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -56,32 +57,29 @@ input {
 display: none;
 }
 
-
-
 ul {
   text-align: left;
 }
 
 
-p {
-  font-weight: bold;
-  color: #5c7ad4;
-}
-
-h1 {
-  // background-color: #fffae4;
-  // color: #5c4a24;
-  // border: 5px solid #fffeec;
-  // height: 11%;
-  // margin: 0;
-  // text-align: center;
-  // border-radius: 15px;
+header {
+  background-color: $cream;
+  color: $main-font;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 5px solid $white;
+  font-size: xxx-large;
+  height: 20%;
+  margin: 0;
+  text-align: center;
+  border-radius: 15px;
 }
 
 .card {
   all: unset;
-  background-color: #fffae4;;
-  border: 5px solid #fffeec;
+  background-color: $cream;
+  border: 5px solid $white;
   border-radius: 15px;
   color: #5c4a24;
   display: flex;
@@ -90,7 +88,7 @@ h1 {
   justify-content: center;
   height: fit-content;
   width: 100%;
-  margin: inherit;
+  margin: 5%;
 }
 
 //main page styling//
@@ -99,21 +97,40 @@ h1 {
   display: grid;
   grid-template-areas: "side header"
                        "side main";
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr 4fr;
+  grid-template-columns: 1.5r 4fr;
+  grid-template-rows: 1fr 8fr;
 }
 
 .main-header {
   grid-area: header;
-  background-color: teal;
+  background-color: $background;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: fit-content;
 }
 
 .sidebar {
   grid-area: side;
-  background-color: tomato;
+  background-color: $lighterblue;
+  border-radius: 15px;
   height: 100%;
   width: 100%;
+}
+
+.user-card {
+  border-radius: 15px;
+}
+
+.new-trip {
+  background-color: $lighterblue;
+  color: $cream;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: inherit;
 }
 
 .cards-area {
@@ -121,7 +138,11 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(auto, 1fr);
-  background-color: violet;
+  background-color: $background;
   height: fit-content;
   width: 100%;
+}
+
+.user-card {
+  background-color: $cream;
 }

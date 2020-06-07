@@ -1,11 +1,6 @@
 import data from './fetch';
 import User from './user';
 
-const cardsArea = document.querySelector('.cards-area');
-const loginPage = document.querySelector('.login-page')
-const sidebar = document.querySelector('.sidebar')
-const mainHeader = document.querySelector('.main-header')
-
 class Traveler extends User {
   constructor(id) {
     super(id);
@@ -22,7 +17,7 @@ class Traveler extends User {
     this.getDestinations()
     this.getDestinationsIDs()
     this.calcCost()
-    this.showTravelerPage(this.id)
+    this.showTravelerPage()
   }
 
   getTrips(id, trips) {
@@ -30,49 +25,28 @@ class Traveler extends User {
     return this.trips = theseTrips
   }
 
-  showTravelerPage(id) {
-    this.showTotalSpent()
-    let builtData = this.trips.forEach(trip =>{
-      loginPage.classList.add('hide')
-      sidebar.classList.remove('hide')
-      mainHeader.classList.remove('hide')
-      cardsArea.classList.remove('hide')
-      cardsArea.insertAdjacentHTML('beforeend', 
-      `<section class="card">
-        <article class="card-header">
-          <h1>Location: ${trip.locale}</h1>
-          <h2>Trip Date: ${trip.date}</h2>
-        </article>
-          <ul>
-            <li>Duration ${trip.duration}</li>
-            <li>Status ${trip.status}</li>
-            <li>Suggested Activities ${trip.suggestActivities}</li>
-            <li>Travelers ${trip.travelers}</li>
-            <li>Cost ${trip.cost}</li>
-          </ul>
-      </section>`)
-    })
-    return builtData
-//     All of my trips (past, present, upcoming and pending)
-// Total amount I have spent on trips this year. This should be calculated from the trips data and include a travel agent’s 10% fee
-  }
+  showTravelerPage() {
+    this.dom.showUserSidebar()
+    this.dom.toggleLogin()
+    this.dom.showUserCards()
+ }
 
   calcCost() {
     let total = 0
     let costs = this.trips.forEach(trip => {
-      total += trip.cost
+      total += trip.cost + (trip.cost * .1)
     })
     this.total = total
     return costs
   }
 
-  showTotalSpent() {
-    sidebar.insertAdjacentHTML('beforeend', 
-    `<section class="pending">
-      <p>Total: ${this.total}</p>
-    </section>`
-    )
+  estimateNewTripCost() {
+//     I will select a date, duration, number of travelers and choose from a list of destinations
+// After making these selections, I should see an estimated cost (with a 10% travel agent fee) for the trip.
+// Once I submit the trip request, it will show on my dashboard as “pending” so that the travel agency can approve or deny it.
   }
+
+
 
 
 

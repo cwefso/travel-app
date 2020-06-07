@@ -1,9 +1,6 @@
 import User from './user';
 import data from './fetch';
 
-const cardsArea = document.querySelector('.cards-area');
-const loginCard = document.querySelector('.login-card')
-
 class Agent extends User {
   constructor(id) {
     super(id);
@@ -47,7 +44,6 @@ class Agent extends User {
   getPending() {
     let pendingTrips = this.trips.filter(trip => trip.status === "pending")
     this.pendingTrips = pendingTrips
-    console.log(pendingTrips)
     return pendingTrips
   }
 
@@ -55,8 +51,9 @@ class Agent extends User {
     this.showRevenue()
     this.getPending()
     this.showPending()
+    this.dom.toggleLogin()
+    const cardsArea = document.querySelector('.cards-area')
     let builtData = this.todaysTravelers.forEach(trip =>{
-      loginCard.classList.add('hide')
       cardsArea.insertAdjacentHTML('beforeend', 
       ` <section class="card">
         <p>UserID: ${trip.userID}</p>
@@ -74,16 +71,25 @@ class Agent extends User {
   }
   
   showRevenue() {
-    cardsArea.insertAdjacentHTML('beforeend', 
-    `<section class="card">
-    <p>Revenue: ${this.revenue}</p>
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.insertAdjacentHTML('beforeend', 
+    `<section class="user-card">
+      <section class="user-name">
+        <p>Agent</p>
+      </section> 
+    <section class="total-revenue">
+      <p>Total Revenue: $${this.revenue}</p>
+    </section>
     </section>`)
   }
 
   showPending() {
-    cardsArea.insertAdjacentHTML('beforeend', 
-    `<section class="pending">Pending: ${this.pending}</section>`
-    )
+    const mainHeader = document.querySelector('.main-header')
+    let pending = this.pendingTrips.forEach(trip => {
+      mainHeader.insertAdjacentHTML('beforeend', 
+      `<section class="pending">${trip.locale}-${trip.date}</section>`
+      )
+    })
   }
 
   // New trip requests (a user’s “pending” trips)

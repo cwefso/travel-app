@@ -1,4 +1,4 @@
-// import data from './fetch';
+import DomUpdates from './domUpdates';
 
 class User {
   constructor(id){
@@ -8,10 +8,7 @@ class User {
     this.today = new Date();
     this.date = this.today.getFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate();
     this.destinations = []
-  }
-
-  async getData() {
-    this.destinatationData = await data.getDestinationsData()
+    this.dom = new DomUpdates()
   }
 
   getDestinations() {
@@ -48,8 +45,6 @@ class User {
     })
     return cost
   }
-
-
 
 }
 

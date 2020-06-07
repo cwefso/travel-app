@@ -80,9 +80,9 @@ class DomUpdates {
       <p>Number of Travelers</p>
       <input aria-label='Number of Travelers' id='travelers-number-input' class='travelers-number-input'>
       </input>
-      <button aria-label="submit" id='submit' class='submit-login'>
-        Submit   
-      </button>
+      <button aria-label="submit" id='submit' class='submit-trip'>
+      Submit   
+    </button>
     </section>`
     )
   }

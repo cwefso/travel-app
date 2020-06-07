@@ -9,8 +9,6 @@ import './css/base.scss';
 // import './images/turing-logo.png'
 import data from './fetch';
 import DomUpdates from './domUpdates'
-import User from './user'
-import Traveler from './traveler'
 
 let travelersData
 let tripsData
@@ -19,7 +17,6 @@ let destinationsData
 let domUpdates = new DomUpdates()
 
 const login = document.querySelector('.submit-login');
-const cards = document.querySelector('.cards')
 
 login.addEventListener('click', (event) => {
   event.preventDefault()

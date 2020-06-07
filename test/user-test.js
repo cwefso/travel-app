@@ -1,6 +1,6 @@
 import chai from 'chai';
 import User from '../src/user.js'
-import TestData from '/testData.js'
+import TestData from '../test/testData.js'
 const expect = chai.expect;
 
 let user1, testData

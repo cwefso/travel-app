@@ -26,9 +26,10 @@ class Traveler extends User {
   }
 
   showTravelerPage() {
-    this.dom.showUserSidebar()
+    this.dom.showUserSidebar(this.name, this.total)
     this.dom.toggleLogin()
-    this.dom.showUserCards()
+    this.dom.showUserCards(this.trips)
+    this.populateDestinationList()
  }
 
   calcCost() {
@@ -38,6 +39,21 @@ class Traveler extends User {
     })
     this.total = total
     return costs
+  }
+
+  populateDestinationList() {
+    const destinationList = document.querySelector('.destination-select')
+    const locales = []
+    let destinationNames = this.destinations.forEach(destination => {
+      locales.push(destination.destination)
+    })
+    let sortedLocales = locales.sort()
+    return sortedLocales.forEach(locale => {
+      destinationList.insertAdjacentHTML('beforeend',
+      `<option value="${locale}">${locale}</option>`
+      )
+    })
+
   }
 
   estimateNewTripCost() {

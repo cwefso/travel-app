@@ -56,21 +56,21 @@ class DomUpdates {
     cardsArea.classList.remove('hide')
   }
 
-  showUserSidebar() {
+  showUserSidebar(name, total) {
     const sidebar = document.querySelector('.sidebar')
     sidebar.insertAdjacentHTML('beforeend', 
     ` <section class="user-card">
         <section class="user-name">
-          <p>Hello ${this.name}</p>
+          <p>Hello ${name}</p>
         </section> 
         <section class="total-spent">
-          <p>Total Spent on Travel: $${this.total}</p>
+          <p>Total Spent on Travel: $${total}</p>
         </section>
       </section>
       <section class="new-trip">
         <p>Destination</p>
-      <input aria-label='Destination' id='destination-input' class='destination'>
-      </input>
+      <select aria-label='Destination' class="destination-select" name="destination-select" id="destination-select">
+      </select>
         <p>Date</p>
       <input aria-label='Date' id='new-date-input' class='date-input'>
       </input>
@@ -87,9 +87,9 @@ class DomUpdates {
     )
   }
 
-  showUserCards() {
+  showUserCards(trips) {
     const cardsArea = document.querySelector('.cards-area')
-    let builtData = this.trips.forEach(trip =>{
+    let builtData = trips.forEach(trip => { 
       cardsArea.insertAdjacentHTML('beforeend', 
       `<section class="card">
         <article class="card-header">

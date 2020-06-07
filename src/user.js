@@ -1,8 +1,8 @@
-import data from './fetch';
+// import data from './fetch';
 
 class User {
   constructor(id){
-    id !== undefined ? this.id = id : this.id = 1
+    id !== undefined ? this.id = id : this.id = null
     this.username = 'traveler' + id
     this.password = 'travel2020'
     this.today = new Date();

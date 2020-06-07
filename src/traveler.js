@@ -39,16 +39,17 @@ class Traveler extends User {
       cardsArea.classList.remove('hide')
       cardsArea.insertAdjacentHTML('beforeend', 
       `<section class="card">
-        <p>UserID: ${trip.userID}</p>
-        <p>Location: ${trip.locale}</p>
-        <p>Trip Date: ${trip.date}</p>
-        <p>DestinationID ${trip.destinationID}</p>
-        <p>Duration ${trip.duration}</p>
-        <p>TripID ${trip.id}</p>
-        <p>Status ${trip.status}</p>
-        <p>Suggested Activities ${trip.suggestActivities}</p>
-        <p>Travelers ${trip.travelers}</p>
-        <p>Cost ${trip.cost}</p>
+        <article class="card-header">
+          <h1>Location: ${trip.locale}</h1>
+          <h2>Trip Date: ${trip.date}</h2>
+        </article>
+          <ul>
+            <li>Duration ${trip.duration}</li>
+            <li>Status ${trip.status}</li>
+            <li>Suggested Activities ${trip.suggestActivities}</li>
+            <li>Travelers ${trip.travelers}</li>
+            <li>Cost ${trip.cost}</li>
+          </ul>
       </section>`)
     })
     return builtData

@@ -59,11 +59,8 @@ class Traveler extends User {
   }
 
   submitButton() {
-    const submitButton = document.querySelector('.submit-trip')
-    submitButton.addEventListener('click', (event) => {
-      event.preventDefault()
-      this.check()
-    });
+    const submitButton = document.querySelector('button')
+    submitButton.addEventListener('click', this.check())
   }
 
   submitSelections() {
@@ -73,7 +70,8 @@ class Traveler extends User {
     const numberOfTravelers = document.getElementById('.travelers-number-input').value
   }
 
-  check() {
+  check(event) {
+    event.preventDefault()
     console.log("hey")
   }
 

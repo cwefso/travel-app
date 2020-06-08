@@ -73,22 +73,22 @@ class DomUpdates {
           <p>Total Spent on Travel: $${total}</p>
         </section>
       </section>
-      <section class="new-trip">
+      <form name="newtrip">
         <p>Destination</p>
-      <select aria-label='Destination' class="destination-select" name="destination-select" id="destination-select">
-      </select>
-        <p>Date</p>
-      <input aria-label='Date' id='new-date-input' class='date-input'>
-      </input>
-      <p>Duration</p>
-      <input aria-label='Duration' id='duration-input' class='duration-input'>
-      </input>
-      <p>Number of Travelers</p>
-      <input aria-label='Number of Travelers' id='travelers-number-input' class='travelers-number-input'>
-      </input>
-      <button aria-label="submit" id='submit' class='submit-trip'>
-      Submit   
-    </button>
+        <select aria-label='Destination' class="destination-select" name="destination-select" id="destination-select">
+        </select>
+        <label for="date">What Date? </label>
+        <input type="date" name="date" id="date" required>
+
+        <label for="duration">How Many Days?</label>
+        <input type="duration" name="duration" id="duration" required>
+
+        <label for="travelercount">How Many Travelers?</label>
+        <input type="travelercount" name="travelercount" id="travelercount" required>
+
+        <button type="submit" value="Submit!"></button>
+
+      </form>
     </section>`
     )
   }

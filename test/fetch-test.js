@@ -20,7 +20,7 @@ describe ('Fetch', function() {
   });
 });
 
-describe.skip('Fetch behvior', function() {
+describe('Fetch behavior', function() {
 
   beforeEach(function() {
     

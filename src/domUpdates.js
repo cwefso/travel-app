@@ -78,15 +78,17 @@ class DomUpdates {
         <select aria-label='Destination' class="destination-select" name="destination-select" id="destination-select">
         </select>
         <label for="date">What Date? </label>
-        <input type="date" name="date" id="date" required>
+        <input type="date" class="date" name="date" id="date" required>
 
         <label for="duration">How Many Days?</label>
-        <input type="duration" name="duration" id="duration" required>
+        <input type="duration" class="duration" name="duration" id="duration" required>
 
         <label for="travelercount">How Many Travelers?</label>
-        <input type="travelercount" name="travelercount" id="travelercount" required>
+        <input type="travelercount" class="travelercount" name="travelercount" id="travelercount" required>
 
-        <button type="submit" value="Submit!"></button>
+        <button aria-label="submit" id='submit' class='submit-trip'>
+          Submit   
+        </button>
 
       </form>
     </section>`

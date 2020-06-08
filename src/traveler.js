@@ -30,8 +30,8 @@ class Traveler extends User {
     this.dom.showUserSidebar(this.name, this.total)
     this.dom.toggleLogin()
     this.dom.showUserCards(this.trips)
-    this.populateDestinationList()
     this.submitButton()
+    this.populateDestinationList()
  }
 
   calcCost() {
@@ -59,20 +59,21 @@ class Traveler extends User {
   }
 
   submitButton() {
-    const submitButton = document.querySelector('button')
-    submitButton.addEventListener('click', this.check())
+    const submitButton = document.querySelector('.submit-trip')
+    var formData = new FormData(document.querySelector('form'))
+    submitButton.addEventListener('click', (event) => {
+      event.preventDefault()
+      this.check(formData)
+    });
   }
 
-  submitSelections() {
-    const destinationSelection = document.getElementById('.destination-select').value
-    const dateSelection = document.getElementById('.date-input').value
-    const durationSelection = document.getElementById('.duration-input').value
-    const numberOfTravelers = document.getElementById('.travelers-number-input').value
-  }
-
-  check(event) {
-    event.preventDefault()
-    console.log("hey")
+  check(formData) {
+    let form = {}
+    form.destinationSelection = document.querySelector('.destination-select').value
+    form.dateSelection = document.querySelector('.date').value
+    form.durationSelection = document.querySelector('.duration').value
+    form.numberOfTravelers = document.querySelector('.travelercount').value
+    console.log(form)
   }
 
   estimateNewTripCost() {

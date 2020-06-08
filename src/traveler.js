@@ -1,4 +1,4 @@
-import data from './fetch';
+import FetchData from './fetch';
 import User from './user';
 
 class Traveler extends User {
@@ -7,6 +7,7 @@ class Traveler extends User {
   }
 
   async getData(id) {
+    let data = new FetchData()
     this.travelersData = await data.getSpecificTravelerData(id)
     let userTrips = await data.getTripsData()
     this.destinatationData = await data.getDestinationsData()

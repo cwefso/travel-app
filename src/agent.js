@@ -1,5 +1,5 @@
 import User from './user';
-import data from './fetch';
+import FetchData from './fetch';
 
 class Agent extends User {
   constructor(id) {
@@ -11,6 +11,7 @@ class Agent extends User {
   }
 
   async getData() {
+    const data = new FetchData()
     this.trips = await data.getTripsData()
     this.destinatationData = await data.getDestinationsData()
     this.getDestinations()
@@ -26,7 +27,6 @@ class Agent extends User {
       total += trip.cost
     })
     let revenue = total + (total / 10)
-
     this.revenue = revenue
     return costs
   }

@@ -7,29 +7,26 @@ import './css/base.scss';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
-import data from './fetch';
+import FetchData from './fetch';
 import DomUpdates from './domUpdates'
 
-let travelersData
-let tripsData
-let destinationsData
 
-let domUpdates = new DomUpdates()
-
-const login = document.querySelector('.submit-login');
-
-login.addEventListener('click', (event) => {
-  event.preventDefault()
-  domUpdates.makeProfile()
-});
-
-async function getData() {
-  travelersData = await data.getTravelersData()
-  tripsData = await data.getTripsData()
-  destinationsData = await data.getDestinationsData()
-  resolveData()
+const querySelectors = {
+  login: document.querySelector('.submit-login'),
+  nameBox: document.querySelector('.username'),
+  passwordBox: document.querySelector('.password'),
 }
 
-const resolveData = () => {}
 
-window.onload = getData()
+
+async function getData() {
+  let data = new FetchData
+  data.travelersData = await data.getTravelersData()
+  data.tripsData = await data.getTripsData()
+  data.destinationsData = await data.getDestinationsData()
+  const domUpdates = new DomUpdates(data, querySelectors)
+  domUpdates.setEventListener()
+  return () => {}
+}
+
+getData()

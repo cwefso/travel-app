@@ -1,15 +1,9 @@
 const fetch = require("node-fetch")
 
-var travelersUrl = 'https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers'
-var tripsUrl = 'https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips'
-var destinationsUrl = 'https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations'
-
-
-
-let data = {
+class FetchData {
 
   getTravelersData() {
-    return fetch(travelersUrl)
+    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers')
       .then(res => {
         return res.json()
       })
@@ -19,7 +13,7 @@ let data = {
       .catch(err => {
         alert(err.message)
       })
-  },
+  }
 
   getSpecificTravelerData(id) {
     return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/${id}`)
@@ -32,10 +26,10 @@ let data = {
       .catch(err => {
         alert(err.message)
       })
-  },
+  }
 
   getTripsData() {
-    return fetch(tripsUrl)
+    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips/')
       .then(res => {
         return res.json()
       })
@@ -45,7 +39,7 @@ let data = {
       .catch(err => {
         alert(err.message)
       })
-  },
+  }
 
   getSpecificTravelerTrips(id) {
     return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips/${id}`)
@@ -58,10 +52,10 @@ let data = {
       .catch(err => {
         alert(err.message)
       })
-  },
+  }
 
   getDestinationsData() {
-    return fetch(destinationsUrl)
+    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations')
       .then(res => {
         return res.json()
       })
@@ -71,7 +65,7 @@ let data = {
       .catch(err => {
         alert(err.message)
       })
-  },
+  }
 
   requestTrip(id, userID, destinationID, travelers, date, duration, status, suggestedActivities) {
     return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips'), {
@@ -91,4 +85,4 @@ let data = {
   }
 }
 
-export default data
+export default FetchData

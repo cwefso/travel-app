@@ -1,22 +1,21 @@
-import data from './fetch';
-import User from './user';
+import FetchData from './fetch';
 import Agent from './agent';
 import Traveler from './traveler';
 
 
 class DomUpdates {
-  constructor() {
+  constructor(data, querySelectors) {
     this.tripsData;
     this.loginData = {};
     this.traveler = {};
     this.agent = {};
-    this.nameBox = document.querySelector('.username');
-    this.passwordBox = document.querySelector('.password')
+    this.querySelectors = querySelectors;
+    this.data = data;
   }
 
   makeProfile() {
-    let userinput = this.nameBox.value
-    let passwordinput = this.passwordBox.value
+    let userinput = this.querySelectors.nameBox.value
+    let passwordinput = this.querySelectors.passwordBox.value
     this.loginData = {username : userinput, password : passwordinput}
     if (this.loginData.username.toLowerCase().includes('agency') && this.loginData.password === 'travel2020') {
       this.makeAgency()
@@ -25,6 +24,13 @@ class DomUpdates {
     } else {
       alert('Invalid Login')
     }
+  }
+
+  setEventListener() {
+    this.querySelectors.login.addEventListener('click', (event) => {
+      event.preventDefault()
+      this.makeProfile()
+    });
   }
   
   makeAgency(){

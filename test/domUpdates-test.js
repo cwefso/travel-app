@@ -1,21 +1,21 @@
-const chai = require('chai');
-import { expect } from 'chai';
-let spies = require("chai-spies");
-chai.use(spies);
+import chai from 'chai';
+const expect = chai.expect;
+const spies = require('chai-spies');
+chai.use(spies)
 
-import DomUpdates from '../src/domUpdates.js'
+import DomUpdates from '../src/domUpdates'
 
-describe('DomUpdates', () => {
-  let domUpdates
-  beforeEach(() => {
-    global.document = {};
-    chai.spy.on(document, "querySelector", () => {})
-    chai.spy.on(document, "getElementById", () => {})
-    domUpdates = new DomUpdates()
-    chai.spy.on(domUpdates, "makeAgency", () => {})
-  })
+describe('DomUpdates', function() {
 
-  it.only('should be a function', function() {
-    expect(DomUpdates).to.be.a('function')
-  })
-})
+  it('should be a function', () => {
+    let domUpdates = new DomUpdates();
+    expect(DomUpdates).to.be.a('function');  
+  });
+
+  it('should create an instance of the domUpdates class', () => {
+    let domUpdates = new DomUpdates();
+    expect(domUpdates).to.be.an.instanceof(DomUpdates);  
+  });
+
+
+});

@@ -92,7 +92,6 @@ class DomUpdates {
         <button aria-label="submit" id='submit' class='submit-trip'>
           Submit   
         </button>
-
       </form>
       <section class="trip-cost"></section>
     </section>`

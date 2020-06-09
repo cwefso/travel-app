@@ -50,7 +50,6 @@ class Agent extends User {
   showAgentPage() {
     this.showRevenue()
     this.getPending()
-    this.showPending()
     this.dom.toggleLogin()
     const cardsArea = document.querySelector('.cards-area')
     let builtData = this.todaysTravelers.forEach(trip =>{
@@ -67,6 +66,7 @@ class Agent extends User {
         <p>Locale ${trip.locale}</p>
       </section>`)
     })
+    this.searchPending()
     return builtData
   }
   
@@ -80,16 +80,35 @@ class Agent extends User {
     <section class="total-revenue">
       <p>Total Revenue: $${this.revenue}</p>
     </section>
-    </section>`)
+    <input class="pending-search"></class>
+    <button class="approve">click</section>
+    </button>`)
   }
 
   showPending() {
-    const mainHeader = document.querySelector('.main-header')
-    let pending = this.pendingTrips.forEach(trip => {
-      mainHeader.insertAdjacentHTML('beforeend', 
-      `<section class="pending">${trip.locale}-${trip.date}-${trip.id}</section>`
+    const toApprove = document.getElementById('.pending-trips')
+    return this.pendingTrips.forEach(trip => {
+      toApprove.insertAdjacentHTML('beforeend', 
+       `<option value="${trip.id}"></option>`
       )
     })
+  }
+
+  searchPending() {
+    const approve = document.querySelector('.approve')
+    approve.addEventListener('click', (event) => {
+      const search = document.querySelector('.pending-search').value
+      let id = parseInt(search)
+      event.preventDefault()
+      this.agencyApprove(id)
+    })
+  }
+
+  agencyApprove(id) {
+    const fetch = new FetchData()
+    fetch.approveTrip(id)
+      .then(response => console.log(response))
+      .catch(err => console.log(err.message))
   }
 
   // New trip requests (a user’s “pending” trips)

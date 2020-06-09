@@ -63,17 +63,49 @@ class Traveler extends User {
     var formData = new FormData(document.querySelector('form'))
     submitButton.addEventListener('click', (event) => {
       event.preventDefault()
-      this.check(formData)
+      this.checkForm(formData)
     });
   }
 
-  check(formData) {
+  checkForm(formData) {
     let form = {}
     form.destinationSelection = document.querySelector('.destination-select').value
     form.dateSelection = document.querySelector('.date').value
     form.durationSelection = document.querySelector('.duration').value
     form.numberOfTravelers = document.querySelector('.travelercount').value
-    console.log(form)
+    this.setNewTripRequest(form)
+  }
+
+  setNewTripRequest(form) {
+    console.log(typeof form.dateSelection)
+    
+    const setID = () => {
+      return this.destinatationData.reduce((id, destination) => {
+        if(destination.destination === form.destinationSelection) {
+          id = destination.id
+        }
+        return id
+      }, 0)
+    }
+
+    const fixDate = () => form.dateSelection.split('-').join('/')
+
+    const tripData = {
+      id: Date.now(),
+      userID: this.id,
+      destinationID: setID(),
+      travelers: parseInt(form.numberOfTravelers),
+      date: fixDate(),
+      duration: parseInt(form.durationSelection), 
+      status: 'pending',
+      suggestedActivities: []
+    }
+
+    const fetch = new FetchData()
+
+    fetch.requestTrip(tripData)
+      .then(response => console.log(response))
+      .catch(err => console.log(err.message))
   }
 
   estimateNewTripCost() {

@@ -67,21 +67,17 @@ class FetchData {
       })
   }
 
-  requestTrip(id, userID, destinationID, travelers, date, duration, status, suggestedActivities) {
-    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips'), {
+  requestTrip(tripData) {
+    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips', {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json'
       },
-      body: JSON.stringify({id: `${id}`, userID: `${userID}`, destinationID: `${destinationID}`, travelers: `${travelers}`, date: `${date}`, duration: `${duration}`, status: `${status}`, suggestedActivities: `${suggestedActivities}`})
+      body: JSON.stringify(tripData),
+    })
       .then(response => response.json())
-      .then(data => {
-        return data.trips
-      })
-      .catch(err => {
-        alert(err.message)
-      })
-    }
+      .then(response => console.log(response))
+      .catch(err => alert(err.message))
   }
 }
 

@@ -79,6 +79,8 @@ class Traveler extends User {
     submitButton.addEventListener('click', (event) => {
       event.preventDefault()
       this.setNewTripRequest(this.form)
+      this.getData(this.id)
+      this.dom.showUserCards(this.trips)
     });
   }
 
@@ -126,6 +128,7 @@ class Traveler extends User {
     }
   }
 
+
   estimateNewTripCost() {
     this.setFormValues()
     if(!this.form.numberOfTravelers || !this.form.durationSelection || !this.form.dateSelection) {
@@ -146,10 +149,8 @@ class Traveler extends User {
   }
 
   showCost() {
-    const sidebar = document.querySelector('.sidebar')
-    sidebar.insertAdjacentHTML('beforeend',
-    `<section class="trip-cost">${this.form.cost}<section>`
-    )
+    const tripCost = document.querySelector('.trip-cost')
+    tripCost.innerHTML = `<section class="trip-cost">${this.form.cost}<section>`
   }
 
 

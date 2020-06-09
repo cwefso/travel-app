@@ -87,7 +87,7 @@ class Agent extends User {
     const mainHeader = document.querySelector('.main-header')
     let pending = this.pendingTrips.forEach(trip => {
       mainHeader.insertAdjacentHTML('beforeend', 
-      `<section class="pending">${trip.locale}-${trip.date}</section>`
+      `<section class="pending">${trip.locale}-${trip.date}-${trip.id}</section>`
       )
     })
   }

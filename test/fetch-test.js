@@ -13,7 +13,7 @@ describe ('Fetch', function() {
     expect(fetchData).to.be.a('function');
   });
 
-  it('should create an instance of an ApiClass', function() {
+  it('should create an instance of the FetchData class', function() {
     let fetchData = new FetchData();
 
     expect(fetchData).to.be.an.instanceof(FetchData)

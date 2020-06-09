@@ -20,17 +20,3 @@ describe ('Fetch', function() {
   });
 });
 
-describe('Fetch behavior', function() {
-
-  beforeEach(function() {
-    
-    global.document = {}; 
-    chai.spy.on(document, 'fetch', () => {});
-  });
-
-  it.only('should be able to fetch traveler Data', function() {
-
-    let fetchData = new FetchData();
-    expect(fetchData.getTravelersData()).to.call(fetch)
-  });
-});

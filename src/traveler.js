@@ -62,15 +62,23 @@ class Traveler extends User {
     var formData = new FormData(document.querySelector('form'))
     this.setFormValues(formData)
     this.submitButton()
-    // this.estimateNewTripCost()
+    this.costButton()
+
+  }
+
+  costButton() {
+    const costButton = document.querySelector('.estimate-cost')
+    costButton.addEventListener('click', (event) => {
+      event.preventDefault()
+      this.estimateNewTripCost()
+    });
   }
 
   submitButton() {
     const submitButton = document.querySelector('.submit-trip')
     submitButton.addEventListener('click', (event) => {
       event.preventDefault()
-      // this.setNewTripRequest(this.form)
-      this.estimateNewTripCost()
+      this.setNewTripRequest(this.form)
     });
   }
 
@@ -83,35 +91,39 @@ class Traveler extends User {
   }
 
   setNewTripRequest(form) {
-    console.log(typeof form.dateSelection)
+    this.setFormValues()
+    if(!this.form.numberOfTravelers || !this.form.durationSelection || !this.form.dateSelection) {
+      alert("Please enter required information.")
+    } else {
     
-    const setID = () => {
-      return this.destinatationData.reduce((id, destination) => {
-        if(destination.destination === form.destinationSelection) {
-          id = destination.id
-        }
-        return id
-      }, 0)
+      const setID = () => {
+        return this.destinatationData.reduce((id, destination) => {
+          if(destination.destination === form.destinationSelection) {
+            id = destination.id
+          }
+          return id
+        }, 0)
+      }
+
+      const fixDate = () => form.dateSelection.split('-').join('/')
+
+      const tripData = {
+        id: Date.now(),
+        userID: this.id,
+        destinationID: setID(),
+        travelers: parseInt(form.numberOfTravelers),
+        date: fixDate(),
+        duration: parseInt(form.durationSelection), 
+        status: 'pending',
+        suggestedActivities: []
+      }
+
+      const fetch = new FetchData()
+
+      fetch.requestTrip(tripData)
+        .then(response => console.log(response))
+        .catch(err => console.log(err.message))
     }
-
-    const fixDate = () => form.dateSelection.split('-').join('/')
-
-    const tripData = {
-      id: Date.now(),
-      userID: this.id,
-      destinationID: setID(),
-      travelers: parseInt(form.numberOfTravelers),
-      date: fixDate(),
-      duration: parseInt(form.durationSelection), 
-      status: 'pending',
-      suggestedActivities: []
-    }
-
-    const fetch = new FetchData()
-
-    fetch.requestTrip(tripData)
-      .then(response => console.log(response))
-      .catch(err => console.log(err.message))
   }
 
   estimateNewTripCost() {
@@ -126,13 +138,18 @@ class Traveler extends User {
           destination.cost = lodgingCost + flightCost
         }
         this.form.cost = destination.cost
-        this.showCost()
+        if(this.form.cost !== undefined) {
+          this.showCost()
+        }
       })
     }
   }
 
   showCost() {
-    console.log(this.form.cost)
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.insertAdjacentHTML('beforeend',
+    `<section class="trip-cost">${this.form.cost}<section>`
+    )
   }
 
 

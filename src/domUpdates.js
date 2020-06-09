@@ -86,6 +86,10 @@ class DomUpdates {
         <label for="travelercount">How Many Travelers?</label>
         <input type="travelercount" class="travelercount" name="travelercount" id="travelercount" required>
 
+        <button aria-label="estimate-cost" id='estimate-cost' class='estimate-cost'>
+        Estimate Cost
+        </section>
+
         <button aria-label="submit" id='submit' class='submit-trip'>
           Submit   
         </button>

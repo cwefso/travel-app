@@ -68,12 +68,12 @@ class Traveler extends User {
   }
 
   checkForm(formData) {
-    let form = {}
-    form.destinationSelection = document.querySelector('.destination-select').value
-    form.dateSelection = document.querySelector('.date').value
-    form.durationSelection = document.querySelector('.duration').value
-    form.numberOfTravelers = document.querySelector('.travelercount').value
-    this.setNewTripRequest(form)
+    this.form = {}
+    this.form.destinationSelection = document.querySelector('.destination-select').value
+    this.form.dateSelection = document.querySelector('.date').value
+    this.form.durationSelection = document.querySelector('.duration').value
+    this.form.numberOfTravelers = document.querySelector('.travelercount').value
+    this.setNewTripRequest(this.form)
   }
 
   setNewTripRequest(form) {

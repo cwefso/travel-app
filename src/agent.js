@@ -14,6 +14,10 @@ class Agent extends User {
     const data = new FetchData()
     this.trips = await data.getTripsData()
     this.destinatationData = await data.getDestinationsData()
+    this.showData()
+  }
+  
+  showData() {
     this.getDestinations()
     this.getDestinationsIDs()
     this.todaysTravel()
@@ -67,6 +71,7 @@ class Agent extends User {
         <p>Locale ${trip.locale}</p>
       </section>`)
     })
+    this.searchPending()
     return builtData
   }
   
@@ -80,16 +85,38 @@ class Agent extends User {
     <section class="total-revenue">
       <p>Total Revenue: $${this.revenue}</p>
     </section>
-    </section>`)
+    <input class="pending-search"></class>
+    <button class="approve">click</section>
+    </button>`)
   }
 
   showPending() {
     const mainHeader = document.querySelector('.main-header')
+    mainHeader.innerHTML = ""
     let pending = this.pendingTrips.forEach(trip => {
       mainHeader.insertAdjacentHTML('beforeend', 
-      `<section class="pending">${trip.locale}-${trip.date}</section>`
+      `<section class="pending">${trip.locale}-${trip.date}-${trip.id}</section>`
       )
     })
+  }
+
+  searchPending() {
+    const approve = document.querySelector('.approve')
+    approve.addEventListener('click', (event) => {
+      const search = document.querySelector('.pending-search').value
+      let id = parseInt(search)
+      event.preventDefault()
+      this.agencyApprove(id)
+      this.getPending()
+      this.showPending()
+    })
+  }
+
+  agencyApprove(id) {
+    const fetch = new FetchData()
+    fetch.approveTrip(id)
+      .then(response => console.log(response))
+      .catch(err => console.log(err.message))
   }
 
   // New trip requests (a user’s “pending” trips)

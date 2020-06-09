@@ -64,8 +64,7 @@ class DomUpdates {
 
   showUserSidebar(name, total) {
     const sidebar = document.querySelector('.sidebar')
-    sidebar.insertAdjacentHTML('beforeend', 
-    ` <section class="user-card">
+    sidebar.innerHTML = ` <section class="user-card">
         <section class="user-name">
           <p>Hello ${name}</p>
         </section> 
@@ -93,14 +92,14 @@ class DomUpdates {
         <button aria-label="submit" id='submit' class='submit-trip'>
           Submit   
         </button>
-
       </form>
+      <section class="trip-cost"></section>
     </section>`
-    )
   }
 
   showUserCards(trips) {
     const cardsArea = document.querySelector('.cards-area')
+    cardsArea.innerHTML = ""
     let builtData = trips.forEach(trip => { 
       cardsArea.insertAdjacentHTML('beforeend', 
       `<section class="card">

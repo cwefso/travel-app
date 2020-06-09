@@ -30,8 +30,8 @@ class Traveler extends User {
     this.dom.showUserSidebar(this.name, this.total)
     this.dom.toggleLogin()
     this.dom.showUserCards(this.trips)
-    this.submitButton()
     this.populateDestinationList()
+    this.setFormData()
  }
 
   calcCost() {
@@ -50,7 +50,7 @@ class Traveler extends User {
       locales.push(destination.destination)
     })
     let sortedLocales = locales.sort()
-    this.estimateNewTripCost()
+
     return sortedLocales.forEach(locale => {
       destinationList.insertAdjacentHTML('beforeend',
       `<option value="${locale}">${locale}</option>`
@@ -58,22 +58,28 @@ class Traveler extends User {
     })
   }
 
+  setFormData() {
+    var formData = new FormData(document.querySelector('form'))
+    this.setFormValues(formData)
+    this.submitButton()
+    // this.estimateNewTripCost()
+  }
+
   submitButton() {
     const submitButton = document.querySelector('.submit-trip')
-    var formData = new FormData(document.querySelector('form'))
     submitButton.addEventListener('click', (event) => {
       event.preventDefault()
-      this.checkForm(formData)
+      // this.setNewTripRequest(this.form)
+      this.estimateNewTripCost()
     });
   }
 
-  checkForm(formData) {
+  setFormValues(formData) {
     this.form = {}
     this.form.destinationSelection = document.querySelector('.destination-select').value
     this.form.dateSelection = document.querySelector('.date').value
     this.form.durationSelection = document.querySelector('.duration').value
     this.form.numberOfTravelers = document.querySelector('.travelercount').value
-    this.setNewTripRequest(this.form)
   }
 
   setNewTripRequest(form) {
@@ -109,10 +115,24 @@ class Traveler extends User {
   }
 
   estimateNewTripCost() {
-    const destinationCosts = this.destinations.forEach(destination => {
-      let cost = destination
-    })
-    return destinationCosts
+    this.setFormValues()
+    if(!this.form.numberOfTravelers || !this.form.durationSelection || !this.form.dateSelection) {
+      alert("Please enter required information.")
+    } else {
+      return this.destinations.map(destination => {
+        if (this.form.destinationSelection === destination.destination){
+          let lodgingCost = (destination.estimatedLodgingCostPerDay * this.form.numberOfTravelers) * this.form.durationSelection
+          let flightCost = (destination.estimatedFlightCostPerPerson * this.form.numberOfTravelers)
+          destination.cost = lodgingCost + flightCost
+        }
+        this.form.cost = destination.cost
+        this.showCost()
+      })
+    }
+  }
+
+  showCost() {
+    console.log(this.form.cost)
   }
 
 

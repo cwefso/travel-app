@@ -1,8 +1,5 @@
-import data from './fetch';
+import FetchData from './fetch';
 import User from './user';
-
-const cards = document.querySelector('.cards');
-const loginCard = document.querySelector('.login-card')
 
 class Traveler extends User {
   constructor(id) {
@@ -10,6 +7,7 @@ class Traveler extends User {
   }
 
   async getData(id) {
+    let data = new FetchData()
     this.travelersData = await data.getSpecificTravelerData(id)
     let userTrips = await data.getTripsData()
     this.destinatationData = await data.getDestinationsData()
@@ -20,7 +18,7 @@ class Traveler extends User {
     this.getDestinations()
     this.getDestinationsIDs()
     this.calcCost()
-    this.showTravelerPage(this.id)
+    this.showTravelerPage()
   }
 
   getTrips(id, trips) {
@@ -28,47 +26,103 @@ class Traveler extends User {
     return this.trips = theseTrips
   }
 
-  showTravelerPage(id) {
-    this.showTotalSpent()
-    let builtData = this.trips.forEach(trip =>{
-      loginCard.classList.add('hide')
-      cards.insertAdjacentHTML('beforeend', 
-      `<section class="card">
-        <p>UserID: ${trip.userID}</p>
-        <p>Location: ${trip.locale}</p>
-        <p>Trip Date: ${trip.date}</p>
-        <p>DestinationID ${trip.destinationID}</p>
-        <p>Duration ${trip.duration}</p>
-        <p>TripID ${trip.id}</p>
-        <p>Status ${trip.status}</p>
-        <p>Suggested Activities ${trip.suggestActivities}</p>
-        <p>Travelers ${trip.travelers}</p>
-        <p>Cost ${trip.cost}</p>
-      </section>`)
-    })
-    return builtData
-//     All of my trips (past, present, upcoming and pending)
-// Total amount I have spent on trips this year. This should be calculated from the trips data and include a travel agent’s 10% fee
-  }
+  showTravelerPage() {
+    this.dom.showUserSidebar(this.name, this.total)
+    this.dom.toggleLogin()
+    this.dom.showUserCards(this.trips)
+    this.submitButton()
+    this.populateDestinationList()
+ }
 
   calcCost() {
     let total = 0
     let costs = this.trips.forEach(trip => {
-      total += trip.cost
+      total += trip.cost + (trip.cost * .1)
     })
     this.total = total
     return costs
   }
 
-  showTotalSpent() {
-    cards.insertAdjacentHTML('beforeend', 
-    `<section class="pending">
-      <p>Total: ${this.total}</p>
-    </section>`
-    )
+  populateDestinationList() {
+    const destinationList = document.querySelector('.destination-select')
+    const locales = []
+    let destinationNames = this.destinations.forEach(destination => {
+      locales.push(destination.destination)
+    })
+    let sortedLocales = locales.sort()
+    this.estimateNewTripCost()
+    return sortedLocales.forEach(locale => {
+      destinationList.insertAdjacentHTML('beforeend',
+      `<option value="${locale}">${locale}</option>`
+      )
+    })
+  }
+
+  submitButton() {
+    const submitButton = document.querySelector('.submit-trip')
+    var formData = new FormData(document.querySelector('form'))
+    submitButton.addEventListener('click', (event) => {
+      event.preventDefault()
+      this.checkForm(formData)
+    });
+  }
+
+  checkForm(formData) {
+    let form = {}
+    form.destinationSelection = document.querySelector('.destination-select').value
+    form.dateSelection = document.querySelector('.date').value
+    form.durationSelection = document.querySelector('.duration').value
+    form.numberOfTravelers = document.querySelector('.travelercount').value
+    this.setNewTripRequest(form)
+  }
+
+  setNewTripRequest(form) {
+    console.log(typeof form.dateSelection)
+    
+    const setID = () => {
+      return this.destinatationData.reduce((id, destination) => {
+        if(destination.destination === form.destinationSelection) {
+          id = destination.id
+        }
+        return id
+      }, 0)
+    }
+
+    const fixDate = () => form.dateSelection.split('-').join('/')
+
+    const tripData = {
+      id: Date.now(),
+      userID: this.id,
+      destinationID: setID(),
+      travelers: parseInt(form.numberOfTravelers),
+      date: fixDate(),
+      duration: parseInt(form.durationSelection), 
+      status: 'pending',
+      suggestedActivities: []
+    }
+
+    const fetch = new FetchData()
+
+    fetch.requestTrip(tripData)
+      .then(response => console.log(response))
+      .catch(err => console.log(err.message))
+  }
+
+  estimateNewTripCost() {
+    const destinationCosts = this.destinations.forEach(destination => {
+      let cost = destination
+    })
+    return destinationCosts
   }
 
 
+//     I will select a date, duration, number of travelers and choose from a list of destinations
+// After making these selections, I should see an estimated cost (with a 10% travel agent fee) for the trip.
+// Once I submit the trip request, it will show on my dashboard as “pending” so that the travel agency can approve or deny it.
+//   
+// flight cost =  destination.estimatedFlightCostPerPerson * (number of travelers input)
+// lodging cost = destination.estimatedLodgingCostPerDay * (number of duration input)
+//
 
 }
 

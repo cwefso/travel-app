@@ -1,0 +1,148 @@
+@import "variables";
+
+// html {
+//   // height: 100%;
+//   // max-height: 100%;
+//   // min-height: 100%;
+// }
+
+
+body {
+  background-color: $background;
+  font-family: 'Open Sans', sans-serif;
+}
+
+//login page styling//
+.login-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+button {
+  background-color: $lighterblue;
+  color: $white;
+  border-radius: 15px;
+  padding: 2%;
+  margin-top: 5%;
+  cursor: pointer;
+}
+
+.login-card {
+all: unset;
+background-color: $cream;
+border: 5px solid $white;
+border-radius: 15px;
+color: $lighterblue;
+font-weight: bold;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 400px;
+width: 400px;
+}
+
+input {
+  width: 40%;
+  height: 5vh;
+  font-size: 3vh;
+  border-radius: 15px;
+}
+
+.hide {
+display: none;
+}
+
+ul {
+  text-align: left;
+}
+
+
+header {
+  background-color: $cream;
+  color: $main-font;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 5px solid $white;
+  font-size: xxx-large;
+  height: 20%;
+  margin: 0;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.card {
+  all: unset;
+  background-color: $cream;
+  border: 5px solid $white;
+  border-radius: 15px;
+  color: #5c4a24;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: 100%;
+  margin: 5%;
+}
+
+//main page styling//
+
+.main-page {
+  display: grid;
+  grid-template-areas: "side header"
+                       "side main";
+  grid-template-columns: 1.5r 4fr;
+  grid-template-rows: 1fr 8fr;
+}
+
+.main-header {
+  grid-area: header;
+  background-color: $background;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: fit-content;
+}
+
+.sidebar {
+  grid-area: side;
+  background-color: $lighterblue;
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+.user-card {
+  border-radius: 15px;
+}
+
+.new-trip {
+  background-color: $lighterblue;
+  color: $cream;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: inherit;
+}
+
+.cards-area {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
+  background-color: $background;
+  height: fit-content;
+  width: 100%;
+}
+
+.user-card {
+  background-color: $cream;
+}

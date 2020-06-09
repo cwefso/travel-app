@@ -1,8 +1,5 @@
 import User from './user';
-import data from './fetch';
-
-const cards = document.querySelector('.cards');
-const loginCard = document.querySelector('.login-card')
+import FetchData from './fetch';
 
 class Agent extends User {
   constructor(id) {
@@ -14,6 +11,7 @@ class Agent extends User {
   }
 
   async getData() {
+    const data = new FetchData()
     this.trips = await data.getTripsData()
     this.destinatationData = await data.getDestinationsData()
     this.getDestinations()
@@ -29,7 +27,6 @@ class Agent extends User {
       total += trip.cost
     })
     let revenue = total + (total / 10)
-
     this.revenue = revenue
     return costs
   }
@@ -44,12 +41,20 @@ class Agent extends User {
     return allTravelersToday
   }
 
+  getPending() {
+    let pendingTrips = this.trips.filter(trip => trip.status === "pending")
+    this.pendingTrips = pendingTrips
+    return pendingTrips
+  }
+
   showAgentPage() {
     this.showRevenue()
+    this.getPending()
     this.showPending()
+    this.dom.toggleLogin()
+    const cardsArea = document.querySelector('.cards-area')
     let builtData = this.todaysTravelers.forEach(trip =>{
-      loginCard.classList.add('hide')
-      cards.insertAdjacentHTML('beforeend', 
+      cardsArea.insertAdjacentHTML('beforeend', 
       ` <section class="card">
         <p>UserID: ${trip.userID}</p>
         <p>Trip Data: ${trip.date}</p>
@@ -66,16 +71,25 @@ class Agent extends User {
   }
   
   showRevenue() {
-    cards.insertAdjacentHTML('beforeend', 
-    `<section class="card">
-    <p>Revenue: ${this.revenue}</p>
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.insertAdjacentHTML('beforeend', 
+    `<section class="user-card">
+      <section class="user-name">
+        <p>Agent</p>
+      </section> 
+    <section class="total-revenue">
+      <p>Total Revenue: $${this.revenue}</p>
+    </section>
     </section>`)
   }
 
   showPending() {
-    cards.insertAdjacentHTML('beforeend', 
-    `<section class="pending">Pending</section>`
-    )
+    const mainHeader = document.querySelector('.main-header')
+    let pending = this.pendingTrips.forEach(trip => {
+      mainHeader.insertAdjacentHTML('beforeend', 
+      `<section class="pending">${trip.locale}-${trip.date}</section>`
+      )
+    })
   }
 
   // New trip requests (a user’s “pending” trips)

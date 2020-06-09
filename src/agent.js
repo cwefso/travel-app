@@ -14,6 +14,10 @@ class Agent extends User {
     const data = new FetchData()
     this.trips = await data.getTripsData()
     this.destinatationData = await data.getDestinationsData()
+    this.showData()
+  }
+  
+  showData() {
     this.getDestinations()
     this.getDestinationsIDs()
     this.todaysTravel()
@@ -50,6 +54,7 @@ class Agent extends User {
   showAgentPage() {
     this.showRevenue()
     this.getPending()
+    this.showPending()
     this.dom.toggleLogin()
     const cardsArea = document.querySelector('.cards-area')
     let builtData = this.todaysTravelers.forEach(trip =>{
@@ -86,10 +91,11 @@ class Agent extends User {
   }
 
   showPending() {
-    const toApprove = document.getElementById('.pending-trips')
-    return this.pendingTrips.forEach(trip => {
-      toApprove.insertAdjacentHTML('beforeend', 
-       `<option value="${trip.id}"></option>`
+    const mainHeader = document.querySelector('.main-header')
+    mainHeader.innerHTML = ""
+    let pending = this.pendingTrips.forEach(trip => {
+      mainHeader.insertAdjacentHTML('beforeend', 
+      `<section class="pending">${trip.locale}-${trip.date}-${trip.id}</section>`
       )
     })
   }
@@ -101,6 +107,8 @@ class Agent extends User {
       let id = parseInt(search)
       event.preventDefault()
       this.agencyApprove(id)
+      this.getPending()
+      this.showPending()
     })
   }
 

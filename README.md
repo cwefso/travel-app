@@ -29,22 +29,26 @@
 
 This page displays the users hydration, sleep, and activity data.
 
-![Full App Page](https://i.gyazo.com/fc9db3e4aadd4685828e9be8f00d3f1b.gif)
+![Application in Action](https://i.gyazo.com/e5fe734917ba63a34fa65c6d5963b3d3.gif)
 
-The buttons on the menu allow you to display more detailed user information, as well as which friends had the best week.
+Requesting a new trip will post the trip to the trips API.
 
+![Agency Login](https://i.gyazo.com/b2fe52a8c1039f1cddf54ec09fffbd8a.gif)
+
+An agent can approve a trip by typing in its ID number.
 
 
 ## Project Overview
 
-  In this project we worked together to develop an application that could take data from an array of objects and display it in a meaningful way on a user interface.
+  In this project I successfully made HTTPS requests to access and manipulate the data in an API. I used multiple array prototype methods to organize and alter that data, based on interaction with a user interface.
 
 
 ## Technologies Used
 
   - JavaScript
   - Mocha/Chai
-  - HTML/CSS
+  - HTML/CSS/SCSS
+  - Web APIs
 
 ## Systems/Practices
 

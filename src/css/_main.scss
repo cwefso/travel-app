@@ -26,7 +26,6 @@ body {
 
 .login-card {
   align-items: center;
-  all: unset;
   background-color: $cream;
   border-radius: 15px;
   border: 5px solid $white;
@@ -188,6 +187,7 @@ form {
 
 
 @media only screen and (max-width: 600px) {
+
   .main-page {
     grid-template-areas: "header"
                          "side"

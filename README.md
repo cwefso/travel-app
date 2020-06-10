@@ -20,7 +20,6 @@
   - Clone down this repo
   - cd into that directory
   - npm install
-  - open src/index.html
   - npm start
   - go to "http://localhost:8080/"
 

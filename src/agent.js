@@ -36,8 +36,7 @@ class Agent extends User {
   }
 
   todaysTravel() {
-    let date = Date.now()
-    let travelers = this.trips.filter(trip => trip.date === date)
+    let travelers = this.trips.filter(trip => trip.date === this.date)
     let allTravelersToday = 0
     let todays = travelers.forEach(traveler => {
       allTravelersToday += traveler.travelers
@@ -91,9 +90,6 @@ class Agent extends User {
     <button class="approve">click</section>
     </button>`)
   }
-
-  // <select aria-label='Destination' class="destination-select" name="destination-select" id="destination-select">
-  // </select>
 
   showPending() {
     const pendingList = document.querySelector('.pending')

@@ -1,7 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
 import Traveler from '../src/traveler'
-import destinations from './test-data/destinations'
 import trips from './test-data/trips'
 
 describe('Traveler Class', () => {
@@ -25,9 +24,5 @@ describe('Traveler Class', () => {
     traveler.getTrips(10, trips)
     expect(traveler.total).to.eql('');
   })
-
-  // it('should have a default username of traveler plus user id) ', () => {
-  //   expect(user.username).to.eql('traveler10');
-  // })
 
 })

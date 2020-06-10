@@ -78,17 +78,13 @@ class DomUpdates {
         </select>
         <label for="date">Departure Date </label>
         <input type="date" class="date" name="date" id="date" required>
-
         <label for="duration">Trip Duration</label>
         <input type="duration" class="duration" name="duration" id="duration" required>
-
         <label for="travelercount">How Many Travelers?</label>
         <input type="travelercount" class="travelercount" name="travelercount" id="travelercount" required>
-
         <button aria-label="estimate-cost" id='estimate-cost' class='estimate-cost'>
         Estimate Cost
         </section>
-
         <button aria-label="submit" id='submit' class='submit-trip'>
           Submit   
         </button>
@@ -98,9 +94,11 @@ class DomUpdates {
   }
 
   showUserCards(trips) {
+    const pending = document.querySelector('.pending')
+    pending.classList.add('hide')
     const cardsArea = document.querySelector('.cards-area')
     cardsArea.innerHTML = ""
-    let builtData = trips.forEach(trip => { 
+    let builtData = trips.forEach(trip => {
       cardsArea.insertAdjacentHTML('beforeend', 
       `<section class="card">
         <article class="card-header">
@@ -108,11 +106,10 @@ class DomUpdates {
           <h2>Trip Date: ${trip.date}</h2>
         </article>
           <ul>
-            <li>Duration ${trip.duration}</li>
-            <li>Status ${trip.status}</li>
-            <li>Suggested Activities ${trip.suggestActivities}</li>
-            <li>Travelers ${trip.travelers}</li>
-            <li>Cost ${trip.cost}</li>
+            <li>Duration in days: ${trip.duration}</li>
+            <li>Status: ${trip.status}</li>
+            <li>Number of Travelers: ${trip.travelers}</li>
+            <li>Cost: ${trip.cost}</li>
           </ul>
       </section>`)
     })

@@ -14,7 +14,7 @@ describe('DomUpdates', function() {
     chai.spy.on(document, 'addEventListener', () => {})
     domUpdates = new DomUpdates();
   
-})
+  })
 
   it('should be a function', () => {
 

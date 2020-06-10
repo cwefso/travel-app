@@ -7,7 +7,6 @@ html {
   width: 99vw;
 }
 
-
 body {
   background-color: $background;
   font-family: 'Open Sans', sans-serif;
@@ -15,14 +14,43 @@ body {
 }
 
 //login page styling//
+
 .login-page {
-  height: 100vh;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100vh;
   justify-content: space-around;
   width: 100%;
 }
+
+.login-card {
+  align-items: center;
+  all: unset;
+  background-color: $cream;
+  border-radius: 15px;
+  border: 5px solid $white;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
+  width: 400px;
+    p {
+        color: $lighterblue;
+        font-size: 20px;
+        font-weight: bold;
+      }
+  }
+
+  input {
+    border-radius: 15px;
+    display: block;
+    font-size: 3vh;
+    height: 3vh;
+    margin: 10px;
+    padding: 5px;
+    width: 75%;
+  }
 
 .username, .password {
   padding: 5px;
@@ -30,41 +58,13 @@ body {
 
 button {
   background-color: $lighterblue;
+  border-radius: 15px;
   color: $white;
-  border-radius: 15px;
-  padding: 2%;
-  margin-top: 5%;
   cursor: pointer;
-  width: 75%;
   font-size: 20px;
-}
-
-.login-card {
-all: unset;
-background-color: $cream;
-border: 5px solid $white;
-border-radius: 15px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 400px;
-width: 400px;
-  p {
-      color: $lighterblue;
-      font-size: 20px;
-      font-weight: bold;
-    }
-}
-
-input {
+  margin-top: 5%;
+  padding: 2%;
   width: 75%;
-  height: 3vh;
-  font-size: 3vh;
-  border-radius: 15px;
-  display: block;
-  margin: 10px;
-  padding: 5px;
 }
 
 //traveler page syling
@@ -79,32 +79,88 @@ ul {
 
 header {
   background-color: $cream;
+  border-radius: 15px;
+  border: 5px solid $white;
   color: $main-font;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  border: 5px solid $white;
   font-size: xxx-large;
   height: 20%;
+  justify-content: center;
   margin: 0;
   text-align: center;
-  border-radius: 15px;
 }
 
 .card {
+  align-items: center;
   all: unset;
   background-color: $cream;
-  border: 5px solid $white;
   border-radius: 15px;
+  border: 5px solid $white;
   color: #5c4a24;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: fit-content;
+  justify-content: center;
   width: 100%;
 }
 
+.cards-area {
+  background-color: $background;
+  display: grid;
+  grid-area: main;
+  grid-gap: 5%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
+  height: fit-content;
+  margin: 20px;
+  width: initial;
+}
+
+.sidebar {
+  background-color: $lighterblue;
+  border-radius: 15px;
+  grid-area: side;
+  height: 100%;
+}
+
+.user-card {
+  border-radius: 15px;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-trip {
+  align-items: inherit;
+  background-color: $lighterblue;
+  color: $cream;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-card {
+  background-color: $cream;
+  margin: 5px;
+  padding: 5px;
+}
+
+.destination-select {
+  border-radius: 15px;
+  height: 6vh;
+  width: 75%;
+}
+
+.trip-cost {
+  color: $alert;
+  filter: drop-shadow(0px 0px 1px purple);
+  font-size: 5vh;
+  margin: 10px;
+}
 //main page styling//
 
 .main-page {
@@ -120,60 +176,27 @@ header {
   grid-area: header;
 }
 
-.sidebar {
-  grid-area: side;
-  background-color: $lighterblue;
-  border-radius: 15px;
-  height: 100%;
+
+//media queries
+@media only screen and (max-width: 900px) {
+
+  .cards-area {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
 
-.user-card {
-  border-radius: 15px;
-}
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+@media only screen and (max-width: 600px) {
+  .main-page {
+    grid-template-areas: "header"
+                         "side"
+                         "main";
+   grid-template-columns: 1fr;
+  }
 
-.new-trip {
-  background-color: $lighterblue;
-  color: $cream;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: inherit;
-}
+  .cards-area {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
-.cards-area {
-  grid-area: main;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(auto, 1fr);
-  grid-gap: 5%;
-  background-color: $background;
-  height: fit-content;
-  // padding-right: 15px;
-  width: initial;
-  margin: 20px;
-}
-
-.user-card {
-  padding: 5px;
-  margin: 5px;
-  background-color: $cream;
-}
-
-.destination-select {
-  border-radius: 15px;
-  width: 75%;
-  height: 6vh;
-}
-
-.trip-cost {
-  color: $alert;
-  margin: 10px;
-  filter: drop-shadow(0px 0px 1px purple);
-  font-size: 5vh;
 }

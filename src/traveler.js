@@ -153,15 +153,6 @@ class Traveler extends User {
     tripCost.innerHTML = `<section class="trip-cost">Estimated Cost: $${this.form.cost}<section>`
   }
 
-
-//     I will select a date, duration, number of travelers and choose from a list of destinations
-// After making these selections, I should see an estimated cost (with a 10% travel agent fee) for the trip.
-// Once I submit the trip request, it will show on my dashboard as “pending” so that the travel agency can approve or deny it.
-//   
-// flight cost =  destination.estimatedFlightCostPerPerson * (number of travelers input)
-// lodging cost = destination.estimatedLodgingCostPerDay * (number of duration input)
-//
-
 }
 
 export default Traveler

@@ -4,7 +4,7 @@ const spies = require('chai-spies');
 chai.use(spies)
 
 import FetchData from '../src/fetch'
-let fetchedData
+let fetched
 
 describe ('Fetch', function() {
   beforeEach(() => {

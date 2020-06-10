@@ -36,6 +36,7 @@ class Agent extends User {
   }
 
   todaysTravel() {
+
     let travelers = this.trips.filter(trip => trip.date === this.date)
     let allTravelersToday = 0
     let todays = travelers.forEach(traveler => {
@@ -84,31 +85,34 @@ class Agent extends User {
       </section> 
     <section class="total-revenue">
       <p>Total Revenue: $${this.revenue}</p>
-    </section>
-    <p>Enter Trip ID to Approve</p>
-    <input class="pending-search"></class>
-    <button class="approve">click</section>
-    </button>`)
+    </section>`)
   }
 
   showPending() {
     const pendingList = document.querySelector('.pending')
     let pending = this.pendingTrips.forEach(trip => {
       pendingList.insertAdjacentHTML('beforeend', 
-      `<option class="pending">Destination: ${trip.locale}-Date: ${trip.date}-Trid ID: ${trip.id}</option>`
+      `<option class="pending">Trid ID: ${trip.id}-Destination: ${trip.locale}-Date: ${trip.date}</option>`
       )
     })
   }
 
   searchPending() {
+    const deleteButton = document.querySelector('.delete')
     const approve = document.querySelector('.approve')
     approve.addEventListener('click', (event) => {
-      const search = document.querySelector('.pending-search').value
-      let id = parseInt(search)
+      const search = document.querySelector('.pending').value
+      let id = search.match(/\d+/g).map(Number)[0]
       event.preventDefault()
       this.agencyApprove(id)
       this.getPending()
       this.showPending()
+    })
+    deleteButton.addEventListener('click', (event) => {
+      const search = document.querySelector('.pending').value
+      let id = search.match(/\d+/g).map(Number)[0]
+      event.preventDefault()
+      this.agencyDelete(id)
     })
   }
 
@@ -116,7 +120,14 @@ class Agent extends User {
     const fetch = new FetchData()
     fetch.approveTrip(id)
       .then(response => console.log(response))
-      .catch(err => console.log(err.message))
+      .catch(err => alert(err.message))
+  }
+
+  agencyDelete(id) {
+    const fetch = new FetchData()
+    fetch.deleteTrip(id)
+      .then(response = console.log(response))
+      .catch(err => alert(err.message))
   }
 
   // New trip requests (a user’s “pending” trips)

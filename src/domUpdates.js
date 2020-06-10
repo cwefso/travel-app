@@ -16,10 +16,16 @@ class DomUpdates {
   makeProfile() {
     let userinput = this.querySelectors.nameBox.value
     let passwordinput = this.querySelectors.passwordBox.value
-    this.loginData = {username : userinput, password : passwordinput}
-    if (this.loginData.username.toLowerCase().includes('agency') && this.loginData.password === 'travel2020') {
+    let userIDinput
+    if (userinput.match(/\d+/g) !== null) {
+        userIDinput = userinput.match(/\d+/g).map(Number)[0];
+    } else {
+        userIDinput = 0
+    }
+    this.loginData = {username : userinput, password : passwordinput, userID : userIDinput}
+    if (this.loginData.username.toLowerCase() === 'agency' && this.loginData.password === 'travel2020') {
       this.makeAgency()
-    } else if (this.loginData.username.toLowerCase().includes('traveler') && this.loginData.password === 'travel2020') {
+    } else if ((this.loginData.userID < 50) && this.loginData.password === 'travel2020') {
       this.makeTraveler()
     } else {
       alert('Invalid Login')
@@ -78,7 +84,7 @@ class DomUpdates {
         </select>
         <label for="date">Departure Date </label>
         <input type="date" class="date" name="date" id="date" required>
-        <label for="duration">Trip Duration</label>
+        <label for="duration">Trip Duration in Days</label>
         <input type="duration" class="duration" name="duration" id="duration" required>
         <label for="travelercount">How Many Travelers?</label>
         <input type="travelercount" class="travelercount" name="travelercount" id="travelercount" required>
@@ -106,6 +112,7 @@ class DomUpdates {
           <h2>Trip Date: ${trip.date}</h2>
         </article>
           <ul>
+            <li>Trip ID#: ${trip.id}</li>
             <li>Duration in days: ${trip.duration}</li>
             <li>Status: ${trip.status}</li>
             <li>Number of Travelers: ${trip.travelers}</li>

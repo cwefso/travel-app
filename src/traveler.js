@@ -31,6 +31,8 @@ class Traveler extends User {
     this.dom.toggleLogin()
     this.dom.showUserCards(this.trips)
     this.populateDestinationList()
+    const mainHeader = document.querySelector('.main-header') 
+    mainHeader.classList.add('hide')
     this.setFormData()
  }
 

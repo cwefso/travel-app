@@ -27,7 +27,7 @@ body {
 .login-card {
   align-items: center;
   background-color: $cream;
-  border-radius: 15px;
+  border-radius: 3px;
   border: 5px solid $white;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@ body {
   }
 
   input {
-    border-radius: 15px;
+    border-radius: 3px;
     display: block;
     font-size: 3vh;
     height: 3vh;
@@ -57,7 +57,7 @@ body {
 
 button {
   background-color: $lighterblue;
-  border-radius: 15px;
+  border-radius: 3px;
   color: $white;
   cursor: pointer;
   font-size: 20px;
@@ -78,7 +78,7 @@ ul {
 
 header {
   background-color: $cream;
-  border-radius: 15px;
+  border-radius: 3px;
   border: 5px solid $white;
   color: $main-font;
   display: flex;
@@ -94,7 +94,7 @@ header {
   align-items: center;
   all: unset;
   background-color: $cream;
-  border-radius: 15px;
+  border-radius: 3px;
   border: 5px solid $white;
   color: #5c4a24;
   display: flex;
@@ -118,13 +118,13 @@ header {
 
 .sidebar {
   background-color: $lighterblue;
-  border-radius: 15px;
+  border-radius: 3px;
   grid-area: side;
   height: 100%;
 }
 
 .user-card {
-  border-radius: 15px;
+  border-radius: 3px;
 }
 
 form {
@@ -149,7 +149,7 @@ form {
 }
 
 .destination-select {
-  border-radius: 15px;
+  border-radius: 3px;
   height: 6vh;
   width: 75%;
 }

@@ -1,7 +1,10 @@
 class FetchData {
+  constructor() {
+    this.rootURL = `https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/`
+  }
 
   getTravelersData() {
-    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers')
+    return fetch(`${this.rootURL}travelers/travelers`)
       .then(res => {
         return res.json()
       })
@@ -14,7 +17,7 @@ class FetchData {
   }
 
   getSpecificTravelerData(id) {
-    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/${id}`)
+    return fetch(`${this.rootURL}travelers/travelers/${id}`)
       .then(res => {
         return res.json()
       })
@@ -27,7 +30,7 @@ class FetchData {
   }
 
   getTripsData() {
-    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips/')
+    return fetch(`${this.rootURL}trips/trips/`)
       .then(res => {
         return res.json()
       })
@@ -40,7 +43,7 @@ class FetchData {
   }
 
   getSpecificTravelerTrips(id) {
-    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips/${id}`)
+    return fetch(`${this.rootURL}trips/trips/${id}`)
       .then(res => {
         return res.json()
       })
@@ -53,7 +56,7 @@ class FetchData {
   }
 
   getDestinationsData() {
-    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations')
+    return fetch(`${this.rootURL}destinations/destinations`)
       .then(res => {
         return res.json()
       })
@@ -66,7 +69,7 @@ class FetchData {
   }
 
   requestTrip(tripData) {
-    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips', {
+    return fetch(`${this.rootURL}trips/trips`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -83,8 +86,24 @@ class FetchData {
       "id": id,
       "status": "approved"
     }
-    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/updateTrip', {
+    return fetch(`${this.rootURL}trips/updateTrip`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bodyText),
+    })
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => alert(err.message))
+  }
+
+  deleteTrip(id) {
+    let bodyText = {
+      "id": id,
+    }
+    return fetch(`${this.rootURL}trips/trips/`, {
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       },

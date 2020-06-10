@@ -54,12 +54,12 @@ class DomUpdates {
   toggleLogin() {
     const sidebar = document.querySelector('.sidebar')
     const cardsArea = document.querySelector('.cards-area')
-    const mainHeader = document.querySelector('.main-header')
-    const loginPage = document.querySelector('.login-page')    
+    const loginPage = document.querySelector('.login-page')   
+    const mainHeader = document.querySelector('.main-header') 
     loginPage.classList.add('hide')
     sidebar.classList.remove('hide')
-    mainHeader.classList.remove('hide')
     cardsArea.classList.remove('hide')
+    mainHeader.classList.remove('hide')
   }
 
   showUserSidebar(name, total) {
@@ -73,13 +73,13 @@ class DomUpdates {
         </section>
       </section>
       <form name="newtrip">
-        <p>Destination</p>
+        <label for="destination">Destination</label>
         <select aria-label='Destination' class="destination-select" name="destination-select" id="destination-select">
         </select>
-        <label for="date">What Date? </label>
+        <label for="date">Departure Date </label>
         <input type="date" class="date" name="date" id="date" required>
 
-        <label for="duration">How Many Days?</label>
+        <label for="duration">Trip Duration</label>
         <input type="duration" class="duration" name="duration" id="duration" required>
 
         <label for="travelercount">How Many Travelers?</label>
@@ -92,8 +92,8 @@ class DomUpdates {
         <button aria-label="submit" id='submit' class='submit-trip'>
           Submit   
         </button>
+        <section class="trip-cost"></section>
       </form>
-      <section class="trip-cost"></section>
     </section>`
   }
 

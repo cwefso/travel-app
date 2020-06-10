@@ -150,7 +150,7 @@ class Traveler extends User {
 
   showCost() {
     const tripCost = document.querySelector('.trip-cost')
-    tripCost.innerHTML = `<section class="trip-cost">${this.form.cost}<section>`
+    tripCost.innerHTML = `<section class="trip-cost">Estimated Cost: $${this.form.cost}<section>`
   }
 
 

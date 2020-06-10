@@ -6,7 +6,7 @@ class User {
     this.username = 'traveler' + id
     this.password = 'travel2020'
     this.today = new Date();
-    this.date = this.today.getFullYear() + '-' + (this.today.getMonth() + 1) + '-' + this.today.getDate();
+    this.date = `${this.today.getFullYear()}/0${this.today.getMonth() + 1}/${this.today.getDate()}`;
     this.destinations = []
     this.dom = new DomUpdates()
   }

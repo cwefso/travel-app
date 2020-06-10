@@ -54,12 +54,12 @@ class DomUpdates {
   toggleLogin() {
     const sidebar = document.querySelector('.sidebar')
     const cardsArea = document.querySelector('.cards-area')
-    const mainHeader = document.querySelector('.main-header')
-    const loginPage = document.querySelector('.login-page')    
+    const loginPage = document.querySelector('.login-page')   
+    const mainHeader = document.querySelector('.main-header') 
     loginPage.classList.add('hide')
     sidebar.classList.remove('hide')
-    mainHeader.classList.remove('hide')
     cardsArea.classList.remove('hide')
+    mainHeader.classList.remove('hide')
   }
 
   showUserSidebar(name, total) {
@@ -73,34 +73,32 @@ class DomUpdates {
         </section>
       </section>
       <form name="newtrip">
-        <p>Destination</p>
+        <label for="destination">Destination</label>
         <select aria-label='Destination' class="destination-select" name="destination-select" id="destination-select">
         </select>
-        <label for="date">What Date? </label>
+        <label for="date">Departure Date </label>
         <input type="date" class="date" name="date" id="date" required>
-
-        <label for="duration">How Many Days?</label>
+        <label for="duration">Trip Duration</label>
         <input type="duration" class="duration" name="duration" id="duration" required>
-
         <label for="travelercount">How Many Travelers?</label>
         <input type="travelercount" class="travelercount" name="travelercount" id="travelercount" required>
-
         <button aria-label="estimate-cost" id='estimate-cost' class='estimate-cost'>
         Estimate Cost
         </section>
-
         <button aria-label="submit" id='submit' class='submit-trip'>
           Submit   
         </button>
+        <section class="trip-cost"></section>
       </form>
-      <section class="trip-cost"></section>
     </section>`
   }
 
   showUserCards(trips) {
+    const pending = document.querySelector('.pending')
+    pending.classList.add('hide')
     const cardsArea = document.querySelector('.cards-area')
     cardsArea.innerHTML = ""
-    let builtData = trips.forEach(trip => { 
+    let builtData = trips.forEach(trip => {
       cardsArea.insertAdjacentHTML('beforeend', 
       `<section class="card">
         <article class="card-header">
@@ -108,11 +106,10 @@ class DomUpdates {
           <h2>Trip Date: ${trip.date}</h2>
         </article>
           <ul>
-            <li>Duration ${trip.duration}</li>
-            <li>Status ${trip.status}</li>
-            <li>Suggested Activities ${trip.suggestActivities}</li>
-            <li>Travelers ${trip.travelers}</li>
-            <li>Cost ${trip.cost}</li>
+            <li>Duration in days: ${trip.duration}</li>
+            <li>Status: ${trip.status}</li>
+            <li>Number of Travelers: ${trip.travelers}</li>
+            <li>Cost: ${trip.cost}</li>
           </ul>
       </section>`)
     })

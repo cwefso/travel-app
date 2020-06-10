@@ -1,12 +1,12 @@
 import DomUpdates from './domUpdates';
 
 class User {
-  constructor(id){
+  constructor(id) {
     id !== undefined ? this.id = id : this.id = null
     this.username = 'traveler' + id
     this.password = 'travel2020'
     this.today = new Date();
-    this.date = this.today.getFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate();
+    this.date = this.today.getFullYear() + '-' + (this.today.getMonth() + 1) + '-' + this.today.getDate();
     this.destinations = []
     this.dom = new DomUpdates()
   }

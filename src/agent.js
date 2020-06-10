@@ -36,7 +36,7 @@ class Agent extends User {
   }
 
   todaysTravel() {
-    let travelers = this.trips.filter(trip => trip.date === "2020/06/29")
+    let travelers = this.trips.filter(trip => trip.date === this.date)
     let allTravelersToday = 0
     let todays = travelers.forEach(traveler => {
       allTravelersToday += traveler.travelers
@@ -85,17 +85,17 @@ class Agent extends User {
     <section class="total-revenue">
       <p>Total Revenue: $${this.revenue}</p>
     </section>
+    <p>Enter Trip ID to Approve</p>
     <input class="pending-search"></class>
     <button class="approve">click</section>
     </button>`)
   }
 
   showPending() {
-    const mainHeader = document.querySelector('.main-header')
-    mainHeader.innerHTML = ""
+    const pendingList = document.querySelector('.pending')
     let pending = this.pendingTrips.forEach(trip => {
-      mainHeader.insertAdjacentHTML('beforeend', 
-      `<section class="pending">${trip.locale}-${trip.date}-${trip.id}</section>`
+      pendingList.insertAdjacentHTML('beforeend', 
+      `<option class="pending">Destination: ${trip.locale}-Date: ${trip.date}-Trid ID: ${trip.id}</option>`
       )
     })
   }

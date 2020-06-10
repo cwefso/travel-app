@@ -1,57 +1,72 @@
 @import "variables";
 
-// html {
-//   // height: 100%;
-//   // max-height: 100%;
-//   // min-height: 100%;
-// }
-
+html {
+  height: 100%;
+  max-height: 100%;
+  min-height: 100%;
+  width: 99vw;
+}
 
 body {
   background-color: $background;
   font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
 }
 
 //login page styling//
+
 .login-page {
-  height: 100vh;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100vh;
   justify-content: space-around;
   width: 100%;
 }
 
+.login-card {
+  align-items: center;
+  background-color: $cream;
+  border-radius: 15px;
+  border: 5px solid $white;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
+  width: 400px;
+    p {
+        color: $lighterblue;
+        font-size: 20px;
+        font-weight: bold;
+      }
+  }
+
+  input {
+    border-radius: 15px;
+    display: block;
+    font-size: 3vh;
+    height: 3vh;
+    margin: 10px;
+    padding: 5px;
+    width: 75%;
+  }
+
+.username, .password {
+  padding: 5px;
+}
+
 button {
   background-color: $lighterblue;
+  border-radius: 15px;
   color: $white;
-  border-radius: 15px;
-  padding: 2%;
-  margin-top: 5%;
   cursor: pointer;
+  font-size: 20px;
+  margin-top: 5%;
+  padding: 2%;
+  width: 75%;
 }
 
-.login-card {
-all: unset;
-background-color: $cream;
-border: 5px solid $white;
-border-radius: 15px;
-color: $lighterblue;
-font-weight: bold;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 400px;
-width: 400px;
-}
-
-input {
-  width: 40%;
-  height: 5vh;
-  font-size: 3vh;
-  border-radius: 15px;
-}
+//traveler page syling
 
 .hide {
 display: none;
@@ -61,88 +76,127 @@ ul {
   text-align: left;
 }
 
-
 header {
   background-color: $cream;
+  border-radius: 15px;
+  border: 5px solid $white;
   color: $main-font;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  border: 5px solid $white;
   font-size: xxx-large;
   height: 20%;
+  justify-content: center;
   margin: 0;
   text-align: center;
-  border-radius: 15px;
 }
 
 .card {
+  align-items: center;
   all: unset;
   background-color: $cream;
-  border: 5px solid $white;
   border-radius: 15px;
+  border: 5px solid $white;
   color: #5c4a24;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: fit-content;
+  justify-content: center;
   width: 100%;
-  margin: 5%;
 }
 
+.cards-area {
+  background-color: $background;
+  display: grid;
+  grid-area: main;
+  grid-gap: 5%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
+  height: fit-content;
+  margin: 20px;
+  width: initial;
+}
+
+.sidebar {
+  background-color: $lighterblue;
+  border-radius: 15px;
+  grid-area: side;
+  height: 100%;
+}
+
+.user-card {
+  border-radius: 15px;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-trip {
+  align-items: inherit;
+  background-color: $lighterblue;
+  color: $cream;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-card {
+  background-color: $cream;
+  margin: 5px;
+  padding: 5px;
+}
+
+.destination-select {
+  border-radius: 15px;
+  height: 6vh;
+  width: 75%;
+}
+
+.trip-cost {
+  color: $alert;
+  filter: drop-shadow(0px 0px 1px purple);
+  font-size: 5vh;
+  margin: 10px;
+}
 //main page styling//
 
 .main-page {
   display: grid;
   grid-template-areas: "side header"
                        "side main";
-  grid-template-columns: 1.5r 4fr;
+  grid-template-columns: 1.5fr 4fr;
   grid-template-rows: 1fr 8fr;
+
 }
 
 .main-header {
   grid-area: header;
-  background-color: $background;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  height: fit-content;
 }
 
-.sidebar {
-  grid-area: side;
-  background-color: $lighterblue;
-  border-radius: 15px;
-  height: 100%;
-  width: 100%;
+
+//media queries
+@media only screen and (max-width: 900px) {
+
+  .cards-area {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
 
-.user-card {
-  border-radius: 15px;
-}
 
-.new-trip {
-  background-color: $lighterblue;
-  color: $cream;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: inherit;
-}
+@media only screen and (max-width: 600px) {
 
-.cards-area {
-  grid-area: main;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(auto, 1fr);
-  background-color: $background;
-  height: fit-content;
-  width: 100%;
-}
+  .main-page {
+    grid-template-areas: "header"
+                         "side"
+                         "main";
+   grid-template-columns: 1fr;
+  }
 
-.user-card {
-  background-color: $cream;
+  .cards-area {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
 }
